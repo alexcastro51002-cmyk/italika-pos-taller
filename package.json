@@ -1,19 +1,38 @@
 {
-  "name": "italika-pos-taller",
-  "version": "1.0.0",
-  "description": "Sistema de Inventario, Ventas, Servicios de Taller y Administración de Personal para Punto de Venta de Motocicletas Italika (Equipo 2 - Calidad de Software)",
-  "main": "src/index.js",
+  "name": "svas",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Sistema de Venta y Administración de Servicios (SVAS)",
   "scripts": {
-    "test": "node --test tests/*.test.js",
-    "demo": "node src/index.js"
+    "dev:api": "tsx watch src/server.ts",
+    "dev:web": "vite",
+    "build": "vite build",
+    "lint": "biome check .",
+    "typecheck": "tsc --noEmit",
+    "arch:check": "depcruise src --config .dependency-cruiser.cjs",
+    "secrets:check": "node scripts/secret-scan.mjs",
+    "test": "vitest run",
+    "check": "npm run lint && npm run typecheck && npm run arch:check && npm run secrets:check && npm test",
+    "test:smoke": "tsx scripts/smoke.ts"
   },
-  "keywords": [
-    "italika",
-    "pos",
-    "scrum",
-    "calidad-software",
-    "lowerCamelCase"
-  ],
-  "author": "Equipo 2 - Calidad de Software 7lmv (ITSON)",
-  "license": "MIT"
+  "dependencies": {
+    "express": "^5.1.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/express": "^5.0.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^4.4.1",
+    "dependency-cruiser": "^16.10.1",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "^3.1.3"
+  }
 }
