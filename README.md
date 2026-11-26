@@ -54,10 +54,29 @@ npm run dev:api
 npm run dev:web
 ```
 
-Para compilar el frontend para producción:
+Para compilar el frontend y el servidor para producción:
 ```bash
 npm run build
+npm start
 ```
+
+### Ejecución con Docker (recomendado para portabilidad)
+
+Incluye `Dockerfile` multi-stage sobre `node:24-slim` y `docker-compose.yml` para ejecutar API + Frontend compilado en un solo contenedor sin instalar Node `>= 24` localmente:
+
+```bash
+# Construir e iniciar en segundo plano (http://localhost:3001)
+docker compose up --build -d
+
+# Ver estado y registros
+docker compose ps
+docker compose logs -f
+
+# Detener el contenedor conservando la base de datos en ./data/svas.db
+docker compose down
+```
+
+Variables opcionales soportadas: `PORT` (puerto público, por defecto `3001`) y `SVAS_JWT_SECRET` (clave HMAC para tokens en producción). La carpeta local `./data` se monta en `/app/data` para persistir `svas.db` entre reinicios.
 
 ### Usuarios de demostración (Seed automático)
 

@@ -1,0 +1,14 @@
+node_modules
+dist
+dist-server
+data
+.git
+.githooks
+.github
+docs
+coverage
+*.db
+*.db-*
+.env
+.env.*
+README.md

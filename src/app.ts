@@ -37,6 +37,16 @@ export function createApp(db: DatabaseSync): Express {
   const distDir = resolve(process.cwd(), "dist");
   if (existsSync(distDir)) {
     app.use(express.static(distDir));
+    const indexHtml = resolve(distDir, "index.html");
+    if (existsSync(indexHtml)) {
+      app.use((req, res, next) => {
+        if (req.method === "GET" && !req.path.startsWith("/api")) {
+          res.sendFile(indexHtml);
+          return;
+        }
+        next();
+      });
+    }
   }
 
   app.use(errorHandler);

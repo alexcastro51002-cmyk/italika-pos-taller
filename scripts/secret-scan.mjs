@@ -24,6 +24,7 @@ const IGNORE_DIRS = new Set([
   "node_modules",
   ".git",
   "dist",
+  "dist-server",
   "data",
   "coverage",
 ]);
